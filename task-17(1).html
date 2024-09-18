@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main{
+            background-color: aqua;
+            border: solid black 2px;
+            height: 80vh;
+            width: 80vw;
+            display: grid;
+            padding: 25px;
+            grid-template-areas: 'a b c'
+            'a e f'
+            'g e d';
+        }
+        .m{
+            background-size: cover;
+            background-position: center;
+            border: solid bisque 1px;
+            /* height: 100px; */
+            /* width: 100px; */
+        }
+        .a1{
+            background-image: url(https://assets-in.bmscdn.com/discovery-catalog/events/et00310216-anscvlkfbh-landscape.jpg);
+            grid-area: a;
+        }
+        .a2{
+            background-image: url(https://i.pinimg.com/736x/bd/2f/29/bd2f290176e4e50540600ce92a847a3b.jpg);
+            grid-area: b;
+        }
+        .a3{
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4t7ML69m9nAXvgTUwbaoEQVSj4Q0TyBSxEw&s);
+            grid-area: c;
+        }
+        .a4{
+            background-image: url(https://img.freepik.com/free-photo/photorealistic-view-tree-nature-with-branches-trunk_23-2151478039.jpg);
+            grid-area: d;
+        }
+        .a5{
+            background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSu0afwnixjnkgucKv7T3H5WaOUF0T7HkKCog&s);
+            grid-area: e;
+        }
+        .a6{
+            background-image: url(https://img.freepik.com/free-photo/wide-angle-shot-single-tree-growing-clouded-sky-during-sunset-surrounded-by-grass_181624-22807.jpg);
+            grid-area: f;
+        }
+        .a7{
+            background-image: url(https://cdn.pixabay.com/photo/2024/05/26/10/15/bird-8788491_1280.jpg);
+            grid-area: g;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="m a1"></div>
+        <div class="m a2"></div>
+        <div class="m a3"></div>
+        <div class="m a4"></div>
+        <div class="m a5"></div>
+        <div class="m a6"></div>
+        <div class="m a7"></div>
+    </div>
+</body>
+</html>
