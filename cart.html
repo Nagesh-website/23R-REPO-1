@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            display: grid;
+            grid-template-columns: auto auto auto;
+            gap: 15px;
+
+        }
+        #container>div{
+            background-color: aqua;
+            padding: 10px;
+        }
+        #container>div>div{
+            border: 1px solid black;
+        }
+        img{
+            width: 150px;
+            height: 150px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        let getdata=JSON.parse(localStorage.getItem("cart"))
+        // console.log(getdata)
+
+        container=document.getElementById("container")
+
+        newgetdata=getdata.map((val)=>{
+            // console.log(val)
+            let child=document.createElement("div")
+            let childa=document.createElement("div")
+            let childb=document.createElement("div")
+            let childc=document.createElement("div")
+            let childd=document.createElement("div")
+            let img=document.createElement("img")
+            
+
+            img.src=val.image
+
+
+            child.append(childa,childb,childc,childd,img)
+            childa.innerText=val.id
+            childb.innerText=val.title
+            childc.innerText=val.category
+            childd.innerText=val.price
+            // console.log(child)
+            container.append(child)
+
+        })
+    </script>
+</body>
+</html>
