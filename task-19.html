@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>setTimeout and setInterval Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    #clock {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    #message {
+      color: green;
+      font-weight: bold;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="clock"></div>
+  <button id="showMessageBtn">Show Delayed Message</button>
+  <div id="message">Hello! This is a delayed message.</div>
+
+  <script>
+    // Digital Clock using setInterval
+    function updateClock() {
+      const clockElement = document.getElementById("clock");
+      const now = new Date();
+      const timeString = now.toLocaleTimeString();
+      clockElement.textContent = `Current Time: ${timeString}`;
+    }
+
+    // Start the clock
+    setInterval(updateClock, 1000);
+    updateClock(); // Run immediately to avoid 1-second delay
+
+    // Delayed Message using setTimeout
+    const showMessageBtn = document.getElementById("showMessageBtn");
+    showMessageBtn.addEventListener("click", () => {
+      setTimeout(() => {
+        const messageElement = document.getElementById("message");
+        messageElement.style.display = "block";
+      }, 3000); // 3-second delay
+    });
+  </script>
+</body>
+</html>

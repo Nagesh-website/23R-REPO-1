@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button:hover{
+
+            background-color:m red;
+        }
+        button{
+            font-size: 0.5em;
+            
+        }
+        .btn1{
+            background-color: aqua;
+        }
+        .btn1:hover{
+            background-color: gray;
+        }
+        #inp{
+            border: solid black 2px;
+        }
+        #frm{
+            background-color: aqua;
+            height: 100px;
+            width: 350px;
+            padding: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <form id="frm">
+        <input type="text" id="inp" autofocus>
+        <input type="submit" value="add" class="btn1">
+    </form>
+    <ul id="list">
+
+    </ul>
+
+    <script>
+        let form=document.getElementById("frm")
+        let list=document.getElementById("list")
+        let inp=document.getElementById("inp")
+
+        form.addEventListener("submit",function(e){
+            e.preventDefault();
+            let listItem=document.createElement("li")
+            listItem.innerText=inp.value;
+            list.appendChild(listItem);
+            // ip.value=""
+
+            let btn = document.createElement("button");
+            btn.innerHTML = "X";
+            btn.style.marginLeft = "10px";
+
+            listItem.appendChild(btn);
+            list.appendChild(listItem);
+
+            inp.value = ""; // Clear the input field
+
+            btn.addEventListener('click', function () {
+                list.removeChild(listItem);
+            });
+
+
+            let btn1=document.createElement("button");
+            btn1.innerHTML="edit"
+
+            
+        })
+        
+    </script>
+
+    
+
+</body>
+</html>

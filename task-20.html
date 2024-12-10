@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            background-color: aqua;
+            height: 200px;
+            width: 500px;
+            padding: 50px;
+        }
+        button{
+            margin-left: 200px;
+        }
+        button:hover{
+            background-color: blueviolet;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form">
+        <label for="name">Enter the Name:</label>
+        <input type="text" id="name"><br>
+        <span id="nameError" class="error"></span><br>
+
+        <label for="email">Enter Your E-mail:</label>
+        <input type="email" id="email"><br>
+        <span id="emailError" class="error"></span><br>
+
+        <label for="password">Enter the Password:</label>
+        <input type="password" name="" id="password"><br>
+        <span id="passwordError" class="error"></span><br>
+
+        <label for="mobilenumber">Enter the Mobile Number:</label>
+        <input type="tel" name="" id="mobilenumber"><br>
+        <span id="mobileError" class="error"></span><br>
+
+        <button id="sub">Submit</button>
+
+    </form>
+
+
+    <script>
+         document.getElementById("form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form submission
+            
+            // Clear previous error messages
+            document.getElementById("nameError").textContent = "";
+            document.getElementById("emailError").textContent = "";
+            document.getElementById("passwordError").textContent = "";
+            document.getElementById("mobileError").textContent = "";
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let mobilenumber = document.getElementById("mobilenumber").value;
+
+            let isValid = true;
+
+            // Name validation: Only alphabets and spaces (min 2 characters)
+            let nameRegex = /^[a-zA-Z ]+$/;
+            if (!nameRegex.test(name)) {
+                document.getElementById("nameError").textContent = "Invalid name. Use only letters and spaces.";
+                isValid = false;
+            }
+
+            // Email validation: Standard email format
+            let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById("emailError").textContent = "Invalid email address.";
+                isValid = false;
+            }
+
+            // Password validation: Minimum 8 characters, at least 1 letter and 1 number
+            let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            if (!passwordRegex.test(password)) {
+                document.getElementById("passwordError").textContent = "Password must be at least 8 characters long and include at least one letter and one number.";
+                isValid = false;
+            }
+
+            // Mobile number validation: 10 digits only
+            let mobileRegex = /^\d{10}$/;
+            if (!mobileRegex.test(mobilenumber)) {
+                document.getElementById("mobileError").textContent = "Invalid mobile number. Use exactly 10 digits.";
+                isValid = false;
+            }
+
+            if (isValid) {
+                alert("Form submitted successfully!");
+            }
+        });
+
+    </script>
+</body>
+</html>
