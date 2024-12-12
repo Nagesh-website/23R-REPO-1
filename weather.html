@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-image: url("https://images.pexels.com/photos/186980/pexels-photo-186980.jpeg?cs=srgb&dl=pexels-tahir-shaw-50609-186980.jpg&fm=jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        #weather_form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #city{
+            border-radius: 5px;
+            height: 25px;
+            width: 250px;
+        }
+        #btn{
+            height: 32px;
+            width: 80px;
+            color: white;
+            border-radius: 5px;
+            background-color: rgb(128, 179, 128);
+        }
+        #btn:hover{
+            background-color: green;
+            /* color: white; */
+        }
+        #cards {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        .card {
+            padding: 15px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            background: linear-gradient(180deg, hsl(210, 100%, 75%), hsl(40, 100%, 75%));
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            text-align: left;
+        }
+        .card h3 {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <form action="" id="weather_form">
+        <input type="text" id="city" placeholder="Enter the City Name" required>
+        <button type="submit" id="btn">Submit</button>
+    </form>
+
+    <div id="cards"></div>
+
+    <script>
+        const cityInput = document.getElementById("city");
+        const submitButton = document.getElementById("btn");
+        const cardsContainer = document.getElementById("cards");
+
+        submitButton.addEventListener("click", async (e) => {
+            e.preventDefault();
+
+            const city = cityInput.value.trim();
+
+            if (!city) {
+                alert("Please enter a city name.");
+                return;
+            }
+
+            try {
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=64ed760cc60747a5ffb9b5102819f7c3`);
+                if (!response.ok) {
+                    alert("City not found. Please enter a valid city name.");
+                    return;
+                }
+
+                const data = await response.json();
+
+                // Clear previous results
+                cardsContainer.innerHTML = "";
+
+                // Create card to display weather details
+                const card = document.createElement("div");
+                card.className = "card";
+
+                const cityName = document.createElement("h3");
+                cityName.textContent = `City: ${data.name}`;
+
+                const countryName = document.createElement("h3");
+                countryName.textContent = `Country: ${data.sys.country}`;
+
+                const temperature = document.createElement("h3");
+                temperature.textContent = `Temperature: ${data.main.temp}°C`;
+
+                const description = document.createElement("h3");
+                description.textContent = `Description: ${data.weather[0].description}`;
+
+                const windSpeed = document.createElement("h3");
+                windSpeed.textContent = `Wind Speed: ${data.wind.speed} m/s`;
+
+                const humidity = document.createElement("h3");
+                humidity.textContent = `Humidity: ${data.main.humidity}%`;
+
+                // Append all details to the card
+                card.append(cityName, countryName, temperature, description, windSpeed, humidity);
+
+                // Append the card to the container
+                cardsContainer.appendChild(card);
+
+            } catch (error) {
+                console.error("Error fetching weather data:", error);
+                alert("An error occurred. Please try again later.");
+            }
+        });
+    </script>
+</body>
+</html>
