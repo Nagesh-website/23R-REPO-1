@@ -1,0 +1,216 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: rgb(85, 63, 63);
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            border: 2px solid black;
+            background-color: black;
+            padding: 20px;
+            align-items: center;
+        }
+        header nav h1 {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgb(219, 91, 91);
+        }
+        header nav form {
+            display: flex;
+            justify-content: center;
+        }
+        #searchbox {
+            margin-right: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+            font-size: 18px;
+        }
+        form button {
+            border: none;
+            font-size: 18px;
+            padding: 10px;
+            border-radius: 4px;
+            background-color: rgb(219, 91, 91);
+            color: white;
+            cursor: pointer;
+        }
+        form button:hover {
+            background-color: rgb(223, 22, 22);
+        }
+        #searchmovie h1 {
+            text-align: center;
+            padding: 20px;
+            margin: 20px auto;
+            font-size: 28px;
+            font-weight: bold;
+            color: black;
+        }
+        .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .moviecard {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 600px;
+            background: linear-gradient(180deg, hsl(240, 2%, 11%), hsl(40, 2%, 39%));
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+        }
+        .moviecard img {
+            border-radius: 5px;
+            margin-right: 20px;
+            width: 200px;
+            height: auto;
+        }
+        .moviecard div {
+            flex: 1;
+        }
+        .moviecard p {
+            display: flex;
+            /* justify-content: space-between; */
+            margin: 5px 0;
+        }
+        .moviecard p span.left {
+            font-weight: bold;
+            color: red;
+            margin-right: 10px;
+        }
+        .moviecard p span.right {
+            color: white;
+        }
+        .moviecard h2 {
+            font-size: 22px;
+            font-weight: bold;
+            color: rgb(241, 201, 201);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>N.M.C:Movies</h1>
+            <form action="">
+                <input type="text" name="" id="searchbox" placeholder="Search for movies">
+                <button type="submit" id="sub">Search</button>
+            </form>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div id="searchmovie">
+                <h1>Search for Movies</h1>
+            </div>
+            <div class="container"></div>
+        </section>
+    </main>
+
+    <script>
+        let search = document.getElementById("searchbox");
+        let btn = document.getElementById("sub");
+        let container = document.querySelector(".container");
+        let searchmovie = document.getElementById("searchmovie");
+
+        let getmovies = async (movie) => {
+            try {
+                let url = `https://www.omdbapi.com/?t=${movie}&apikey=a1d9a5bd`;
+                let response = await fetch(url);
+                let result = await response.json();
+
+                searchmovie.innerHTML = " ";
+                if (result.Response === "True") {
+                    showmoviedata(result);
+                } else {
+                    container.innerHTML = `<div style='color: black; font-weight: bold;'>No movie found with the title: "${movie}"</div>`;
+                }
+            } catch (error) {
+                console.error("Error fetching movie data:", error);
+            }
+        };
+
+        let showmoviedata = (data) => {
+            container.innerHTML = "";
+
+            let moviecontainer = document.createElement("div");
+            moviecontainer.classList.add("moviecard");
+
+            let movieimg = document.createElement("img");
+            movieimg.src = data.Poster !== "N/A" ? data.Poster : "placeholder.jpg";
+            movieimg.alt = "Movie Poster";
+
+            let moviedetails = document.createElement("div");
+
+            let movietitle = document.createElement("h2");
+            movietitle.innerHTML = `Title: ${data.Title}`;
+
+            let moviereleasedate = document.createElement("p");
+            moviereleasedate.innerHTML = `<span class='left'>Release Date:</span>${data.Released}`;
+
+            let moviedirector = document.createElement("p");
+            moviedirector.innerHTML = `<span class='left'>Director:</span><span class='right'>${data.Director}</span>`;
+
+            let movieactor = document.createElement("p");
+            movieactor.innerHTML = `<span class='left'>Actors:</span><span class='right'>${data.Actors}</span>`;
+
+            let movielanguage = document.createElement("p");
+            movielanguage.innerHTML = `<span class='left'>Language:</span><span class='right'>${data.Language}</span>`;
+
+            let movierated = document.createElement("p");
+            movierated.innerHTML = `<span class='left'>Rated:</span><span class='right'>${data.imdbRating}</span>`;
+
+            let moviecollections = document.createElement("p");
+            moviecollections.innerHTML = `<span class='left'>Box Office:</span><span class='right'>${data.BoxOffice || "N/A"}</span>`;
+
+            moviedetails.append(
+                movietitle,
+                moviereleasedate,
+                moviedirector,
+                movieactor,
+                movielanguage,
+                movierated,
+                moviecollections
+            );
+
+            moviecontainer.append(movieimg, moviedetails);
+
+            container.appendChild(moviecontainer);
+        };
+
+        btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            let moviename = search.value.trim();
+            if (moviename) {
+                getmovies(moviename);
+            } else {
+                container.innerHTML = "<div style='color: black; font-weight: bold;'>Please enter a movie name.</div>";
+            }
+        });
+    </script>
+</body>
+</html>
