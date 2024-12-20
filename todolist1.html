@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        #frm {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+        }
+
+        #inp {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .btn1 {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn1:hover {
+            background-color: #218838;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        button:hover {
+            background-color: #c82333;
+        }
+
+        .edit-btn {
+            background-color: #007bff;
+            margin-left: 5px;
+        }
+
+        .edit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <form id="frm">
+        <input type="text" id="inp" autofocus placeholder="Enter your todo...">
+        <input type="submit" value="Add" class="btn1">
+    </form>
+    <ul id="list">
+
+    </ul>
+
+    <script>
+        let form = document.getElementById("frm");
+        let list = document.getElementById("list");
+        let inp = document.getElementById("inp");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            let listItem = document.createElement("li");
+            listItem.innerText = inp.value;
+
+            let deleteBtn = document.createElement("button");
+            deleteBtn.innerHTML = "X";
+
+            let editBtn = document.createElement("button");
+            editBtn.innerHTML = "Edit";
+            editBtn.classList.add("edit-btn");
+
+            listItem.appendChild(deleteBtn);
+            listItem.appendChild(editBtn);
+            list.appendChild(listItem);
+
+            inp.value = ""; // Clear the input field
+
+            deleteBtn.addEventListener('click', function () {
+                if (confirm("Are you sure you want to delete this item?")) {
+                    list.removeChild(listItem);
+                }
+            });
+
+            editBtn.addEventListener('click', function () {
+                let newValue = prompt("Edit your item:", listItem.firstChild.nodeValue);
+                if (newValue !== null && newValue.trim() !== "") {
+                    listItem.firstChild.nodeValue = newValue;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
