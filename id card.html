@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ID Card</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+    .id-card {
+      width: 300px;
+      padding: 20px;
+      background-color: rgb(226, 186, 186);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      text-align: center;
+    }
+    .id-card img {
+      width: 180px;
+      height: 180px;
+      border-radius: 5%;
+      margin-bottom: 10px;
+    }
+    .id-card h2 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+    .id-card p {
+      margin: 5px 0;
+      color: #1c34bd;
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  // Create ID card container
+  const idCard = document.createElement('div');
+  idCard.className = 'id-card';
+
+  // Add profile picture
+  const profilePic = document.createElement('img');
+  profilePic.src = './nagesh.jpg';
+  profilePic.alt = 'Profile Picture';
+  idCard.appendChild(profilePic);
+
+  // Add name
+  const name = document.createElement('h2');
+  name.textContent = 'Nagesh';
+  idCard.appendChild(name);
+
+  // Add designation
+  const designation = document.createElement('p');
+  designation.textContent = 'Software Developer';
+  idCard.appendChild(designation);
+
+  // Add company
+  const company = document.createElement('p');
+  company.textContent = 'Tech Solutions';
+  idCard.appendChild(company);
+
+  // Add contact
+  const contact = document.createElement('p');
+  contact.textContent = 'sagarnagesh685@gmail.com';
+  idCard.appendChild(contact);
+
+  // Append ID card to body
+  document.body.appendChild(idCard);
+</script>
+
+</body>
+</html>

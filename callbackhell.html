@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza Delivery System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      color: #ff5722;
+      margin-bottom: 20px;
+    }
+
+    #status {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    img {
+      width: 300px;
+      height: auto;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Pizza Delivery Simulation</h1>
+  <div id="status">Waiting for order...</div>
+  <img id="image" src="https://via.placeholder.com/300" alt="Pizza Process">
+
+  <script>
+    // Simulating pizza delivery steps with callback hell
+    function placeOrder(order, callback) {
+      setTimeout(() => {
+        document.getElementById('status').innerText = `Order placed: ${order}`;
+        document.getElementById('image').src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0Q42yR84hxvfnr0jLMB7yEjJJAOtRuOpohA&s";
+        console.log(`Order placed: ${order}`);
+        callback();
+      }, 1000);
+    }
+
+    function preparePizza(callback) {
+      setTimeout(() => {
+        document.getElementById('status').innerText = 'Pizza is being prepared...';
+        document.getElementById('image').src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStTLi3ERrgfTKau1fdzDnBkEYDoShyBZaXkA&s";
+        console.log('Pizza is being prepared...');
+        callback();
+      }, 2000);
+    }
+
+    function bakePizza(callback) {
+      setTimeout(() => {
+        document.getElementById('status').innerText = 'Pizza is baking...';
+        document.getElementById('image').src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW6G4nuTFXiJGfZktjP3TWDYXmgBzZqix2sg&s";
+        console.log('Pizza is baking...');
+        callback();
+      }, 3000);
+    }
+
+    function packPizza(callback) {
+      setTimeout(() => {
+        document.getElementById('status').innerText = 'Pizza is packed.';
+        document.getElementById('image').src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf5Ko7y8QWs4ZB4bd2GAGUcIDNhHGh899z4w&s";
+        console.log('Pizza is packed.');
+        callback();
+      }, 1000);
+    }
+
+    function deliverPizza(callback) {
+      setTimeout(() => {
+        document.getElementById('status').innerText = 'Pizza delivered!';
+        document.getElementById('image').src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdlJ_k-h9sEVYmtiLKq11QIga0zpxOoW8qw&s";
+        console.log('Pizza delivered!');
+        callback();
+      }, 2000);
+    }
+
+    // Executing the functions in a nested callback style (callback hell)
+    placeOrder('Pepperoni Pizza', () => {
+      preparePizza(() => {
+        bakePizza(() => {
+          packPizza(() => {
+            deliverPizza(() => {
+              console.log('Delivery process completed!');
+            });
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
