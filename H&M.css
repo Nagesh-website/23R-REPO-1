@@ -1,0 +1,346 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins';
+    box-sizing: border-box;
+}
+
+.header{
+    height: 230px;
+    box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.06);
+    
+}
+.main{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60%;
+    padding: 0 50px;
+}
+.services,.icons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.services a{
+    color: black;
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+.logo img{
+    width: 75px;
+
+}
+.icons span{
+    font-size: 32px;
+    font-weight: 200;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+}
+.icons span a{
+    color: black;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin: 0 8px;
+}
+.secoundary{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: rgb(214, 206, 196); */
+}
+
+.links{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.links a{
+    color: rgb(63, 61, 61);
+    text-decoration: none;
+    margin: 0 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 18px;
+}
+.search{
+    width: 250px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(24, 23, 23);
+    margin-left: 120px;
+
+}
+.search span{
+    font-size: 28px;
+    margin: 0 10px;
+    color: rgb(94, 90, 90);
+}
+.search input{
+    /* border: none; */
+    
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0 10px;
+    font-size: 16px;
+    font-weight: 600;
+    /* letter-spacing: 1px; */
+}
+.section{
+    background-color: rgb(224, 212, 196);
+    padding: 5px;
+}
+.section1 {
+    position: relative;
+    height: 100vh; /* Set height to 75% of viewport height */
+    width: 70%; /* Set width to 70% of the viewport */
+    margin: 0 auto; /* Center horizontally */
+    background-image: url("https://image.hm.com/content/dam/global_campaigns/season_00/ladies/ds60d/DS60D-1x1.jpg?imwidth=1536");
+    background-size: cover; /* Ensure the image covers the section */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Avoid repeating the image */
+    background-color: rgb(240, 218, 189);
+    padding-top: 250px;
+    display: flex;
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+    overflow: hidden;
+    /* box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); Add a subtle shadow */
+    border-radius: 5px; /* Add rounded corners for a modern look */
+}
+
+.section1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Add dark overlay */
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    
+    z-index: 2;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+.text {
+    max-width: 40%;
+}
+
+.text h3 {
+    font-size: 2.0rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.text p {
+    font-size: 1.0rem;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: black;
+    color: white;
+}
+
+.price-tag {
+    text-align: right;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.price-tag p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.price-tag span {
+    font-size: 1rem;
+    font-weight: 400;
+    display: block;
+    margin-top: 5px;
+}
+
+
+/* carousel-section  */
+
+.carousel-section {
+    text-align: center;
+    margin: 40px auto;
+    max-width: 1200px;
+    /* overflow: none; */
+    /* overflow-x: hidden; */
+}
+
+.carousel-section h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.carousel-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.carousel {
+    display: flex;
+    gap: 20px;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    width: 90%;
+}
+
+.carousel-item {
+    flex: 0 0 auto;
+    text-align: center;
+    width: 150px; /* Adjust size as needed */
+
+}
+
+.carousel-item img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.carousel-item p {
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+.carousel-item .price {
+    font-size: 0.85rem;
+    color: red;
+    font-weight: bold;
+}
+
+.carousel-item del {
+    color: #888;
+    font-size: 0.75rem;
+    margin-left: 5px;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+
+
+/* footer section */
+
+.footer{
+    height: 90vh;
+    background: rgb(158, 152, 152);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+    padding: 80px 0;
+}
+.nav{
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: space-evenly;
+
+}
+.nav ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.nav ul:nth-child(4){
+    width: 250px;
+}
+.nav ul h4{
+    margin-bottom: 30px;
+}
+.nav ul a{
+    color: black;
+    text-decoration: none;
+    margin: 8px 0;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 16px;
+}
+.nav ul p{
+    color: rgb(112, 109, 109);
+    margin: 8px 0;
+    font-size: 14px;
+}
+.final{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.social i{
+    font-size: 24px;
+    margin: 40px 10px;
+    cursor: pointer;
+    color: black;
+}
+.final h4 img{
+    width: 60px;
+    margin: 0 10px;
+}
