@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H&M Login/Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url("https://media.istockphoto.com/id/1259044821/photo/entrance-to-h-m-store-in-warsaw.jpg?s=612x612&w=0&k=20&c=G6Z444qvr1IlBidaZO2CQBBFzZm3W0e4UY3wVmqtzMk=");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-size: 100% 100%;
+        }
+        .card {
+           
+            background-color: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            display: none;
+    
+        }
+        .card.active {
+            display: block;
+        }
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        p {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        p a {
+            color: #007bff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        p a:hover {
+            text-decoration: underline;
+        }
+        div.checkbox-container {
+    display: flex;
+    justify-content: flex-end; /* Align the checkbox to the right */
+    margin-top: -45px; /* Adjust spacing above the checkbox */
+    margin-bottom: 20px; /* Optional spacing below the checkbox */
+}
+
+.checkbox-container label {
+    font-size: 14px;
+    color: #333;
+    display: flex;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px; /* Add spacing between the checkbox and label */
+    accent-color: #007bff; /* Set the checkbox color */
+}
+
+        
+
+    </style>
+</head>
+<body>
+    <div id="loginCard" class="card active">
+        <h2>Login</h2>
+        <input type="email" id="loginEmail" placeholder="Email">
+        <input type="password" id="loginPassword" placeholder="Password">
+        
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" id="showLoginPassword">
+            </label>
+        </div>
+            
+        <button type="submit" id="loginButton">Login</button>
+        <p>Don't have an account? <a id="toSignUp">Sign Up</a></p>
+    </div>
+
+    <div id="signupCard" class="card">
+        <h2>Sign Up</h2>
+        <input type="email" id="signupEmail" placeholder="Email">
+        <input type="password" id="signupPassword" placeholder="Password">
+        <div class="checkbox-container">
+            <label>
+                <input type="checkbox" id="showSignupPassword"> 
+            </label>
+        </div>
+        <button type="submit" id="signupButton">Sign Up</button>
+        <p>Already have an account? <a id="toLogin">Login</a></p>
+    </div>
+
+    <script type="module">
+
+
+document.getElementById("showLoginPassword").addEventListener("change", (event) => {
+    const passwordField = document.getElementById("loginPassword");
+    passwordField.type = event.target.checked ? "text" : "password";
+});
+document.getElementById("showSignupPassword").addEventListener("change", (event) => {
+    const passwordField = document.getElementById("signupPassword");
+    passwordField.type = event.target.checked ? "text" : "password";
+});
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.1.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBmiyrRrF1LOA6IqXwJssevIRTYT1_wthA",
+            authDomain: "login-e1e8a.firebaseapp.com",
+            projectId: "login-e1e8a",
+            storageBucket: "login-e1e8a.appspot.com",
+            messagingSenderId: "310208652597",
+            appId: "1:310208652597:web:8793ee97ab586ac9df987c"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        document.getElementById("loginButton").addEventListener("click", () => {
+            const email = document.getElementById("loginEmail").value;
+            const password = document.getElementById("loginPassword").value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    alert("Logged in successfully");
+                    console.log(userCredential.user);
+                    window.location.href = "H&M.html";
+                })
+                .catch((error) => alert(`Login failed: ${error.message}`));
+        });
+
+        document.getElementById("signupButton").addEventListener("click", () => {
+            const email = document.getElementById("signupEmail").value;
+            const password = document.getElementById("signupPassword").value;
+
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    alert("Signed up successfully");
+                    console.log(userCredential.user);
+                    showCard("loginCard");
+                })
+                .catch((error) => alert(`Sign up failed: ${error.message}`));
+        });
+
+        document.getElementById("toSignUp").addEventListener("click", () => showCard("signupCard"));
+        document.getElementById("toLogin").addEventListener("click", () => showCard("loginCard"));
+
+        function showCard(cardId) {
+            document.querySelectorAll(".card").forEach(card => card.classList.remove("active"));
+            document.getElementById(cardId).classList.add("active");
+        }
+    </script>
+</body>
+</html>
